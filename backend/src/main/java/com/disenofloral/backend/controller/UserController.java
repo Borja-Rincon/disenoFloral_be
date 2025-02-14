@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000") // Permite solicitudes solo desde este origen
 public class UserController {
 
     private final UserService userService;
