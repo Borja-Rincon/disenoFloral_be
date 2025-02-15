@@ -34,7 +34,7 @@ public class LocationService {
         Location location = locationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Location not found with id: " + id));
 
-        location.setDescription(locationDetails.getDescription());
+        location.setAddress(locationDetails.getAddress());
         location.setCity(locationDetails.getCity());
         location.setCountry(locationDetails.getCountry());
 
