@@ -76,7 +76,8 @@ public class EventLocationService {
         eventLocation.setEvent(event);
         eventLocation.setLocation(location);
         eventLocation.setDate(eventLocationDetails.getDate());
-        eventLocation.setTime(eventLocationDetails.getTime());
+        eventLocation.setStartTime(eventLocationDetails.getStartTime());
+        eventLocation.setEndTime(eventLocationDetails.getEndTime());
 
         return eventLocationRepository.save(eventLocation);
     }

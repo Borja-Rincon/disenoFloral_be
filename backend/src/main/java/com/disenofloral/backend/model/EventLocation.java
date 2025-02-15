@@ -25,8 +25,11 @@ public class EventLocation {
     @Column(nullable = false)
     private LocalDate date;
 
-    @Column(nullable = false)
-    private LocalTime time;
+    @Column(name = "start_time", nullable = false)
+    private LocalTime startTime;
+
+    @Column(name = "end_time", nullable = false)
+    private LocalTime endTime;
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
