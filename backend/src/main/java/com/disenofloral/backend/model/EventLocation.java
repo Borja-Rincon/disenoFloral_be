@@ -1,5 +1,6 @@
 package com.disenofloral.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import java.time.LocalDate;
@@ -26,4 +27,12 @@ public class EventLocation {
 
     @Column(nullable = false)
     private LocalTime time;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Long eventId;
+
+    @Transient
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private Long locationId;
 }

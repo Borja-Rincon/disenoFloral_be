@@ -1,7 +1,9 @@
 package com.disenofloral.backend.service;
 
 import com.disenofloral.backend.model.Event;
+import com.disenofloral.backend.model.User;
 import com.disenofloral.backend.repository.EventRepository;
+import com.disenofloral.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,10 +14,14 @@ import java.util.Optional;
 public class EventService {
 
     private final EventRepository eventRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public EventService(EventRepository eventRepository) {
+    public EventService(
+            EventRepository eventRepository,
+            UserRepository userRepository) {
         this.eventRepository = eventRepository;
+        this.userRepository = userRepository;
     }
 
     public List<Event> getAllEvents() {
@@ -27,6 +33,11 @@ public class EventService {
     }
 
     public Event createEvent(Event event) {
+        if (event.getUserId() != null) {
+            User user = userRepository.findById(event.getUserId())
+                    .orElseThrow(() -> new RuntimeException("User not found with id: " + event.getUserId()));
+            event.setUser(user);
+        }
         return eventRepository.save(event);
     }
 
@@ -36,7 +47,12 @@ public class EventService {
 
         event.setName(eventDetails.getName());
         event.setDescription(eventDetails.getDescription());
-        event.setUser(eventDetails.getUser());
+
+        if (eventDetails.getUserId() != null) {
+            User user = userRepository.findById(eventDetails.getUserId())
+                    .orElseThrow(() -> new RuntimeException("User not found with id: " + eventDetails.getUserId()));
+            event.setUser(user);
+        }
 
         return eventRepository.save(event);
     }
