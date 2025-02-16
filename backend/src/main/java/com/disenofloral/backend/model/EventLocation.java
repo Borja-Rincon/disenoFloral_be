@@ -3,8 +3,7 @@ package com.disenofloral.backend.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -22,14 +21,11 @@ public class EventLocation {
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
-    @Column(nullable = false)
-    private LocalDate date;
+    @Column(name = "start_date", nullable = false)
+    private LocalDateTime startDate;
 
-    @Column(name = "start_time", nullable = false)
-    private LocalTime startTime;
-
-    @Column(name = "end_time", nullable = false)
-    private LocalTime endTime;
+    @Column(name = "end_date", nullable = false)
+    private LocalDateTime endDate;
 
     @Transient
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
