@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/locations")
-@CrossOrigin(origins = "http://localhost:3000") // Permite solicitudes solo desde este origen
+@RequestMapping("/locations")
 public class LocationController {
 
     private final LocationService locationService;

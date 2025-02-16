@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/budgets")
-@CrossOrigin(origins = "http://localhost:3000") // Permite solicitudes solo desde este origen
+@RequestMapping("/budgets")
 public class BudgetController {
 
     private final BudgetService budgetService;
