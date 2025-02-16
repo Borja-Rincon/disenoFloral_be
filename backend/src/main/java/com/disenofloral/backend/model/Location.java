@@ -12,7 +12,7 @@ public class Location {
     private Long id;
 
     @Column(nullable = false)
-    private String description;
+    private String address;
 
     @Column(nullable = false)
     private String city;
