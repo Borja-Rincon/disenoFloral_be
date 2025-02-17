@@ -18,11 +18,14 @@ public class JwtUtil {
     @Value("${jwt.expiration}")
     private long jwtExpirationMs;
 
+    private static final String[] CRUD_PERMISSIONS = {"CREATE", "READ", "UPDATE", "DELETE"};
+
     public String generateToken(String email) {
         return Jwts.builder()
                 .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
+                .claim("permissions", CRUD_PERMISSIONS)
                 .signWith(key)
                 .compact();
     }
